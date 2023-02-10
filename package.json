@@ -1,0 +1,29 @@
+{
+  "name": "taskit",
+  "version": "1.0.0",
+  "description": "A web app to find and hire people for the services you need.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhaskell7901/taskit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhaskell7901/taskit/issues"
+  },
+  "homepage": "https://github.com/bhaskell7901/taskit#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "connect-session-sequelize": "^7.1.5",
+    "dotenv": "^16.0.3",
+    "express-handlebars": "^6.0.7",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.1.2",
+    "sequelize": "^6.28.0"
+  }
+}
