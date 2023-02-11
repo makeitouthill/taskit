@@ -36,7 +36,8 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [8],
+                minLength: [8],
+                maxLength: [32], 
             },
         },
         view_preference: {
@@ -57,7 +58,7 @@ User.init(
         },
     },
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'user',
