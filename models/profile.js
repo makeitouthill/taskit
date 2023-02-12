@@ -35,4 +35,4 @@ Profile.init(
         underscored: true,
         modelName: 'profile'
     }
-);
+);  
