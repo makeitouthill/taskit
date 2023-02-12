@@ -25,17 +25,4 @@ ServiceRange.init(
 }
 );
 
-sequelize.sync(
-    {
-      force: false
-    }
-  )
-  .then(() => {
-    console.log(`ServiceRange table has been successfully recreated`);
-  }
-  )
-  .catch(error => {
-    console.error('Error creating ServiceRange table: ', error);
-  }
-);
 module.exports = ServiceRange;
