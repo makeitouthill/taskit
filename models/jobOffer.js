@@ -34,16 +34,4 @@ JobOffer.init(
 }
 );
 
-sequelize.sync(
-        {force: false}
-        )
-        .then(() => {
-            console.log(`JobOffer table has been successfully created`);
-        }
-        )
-        .catch(error => {
-            console.error('Error creating JobOffer table: ', error);
-        }
-        );
-
 module.exports = JobOffer;
