@@ -12,6 +12,7 @@ ServiceRange.init(
     },
     service_provider_id: {
       type: DataTypes.INTEGER,
+      unique: true,
       allowNull: false
     },
     range_miles: {
@@ -21,6 +22,7 @@ ServiceRange.init(
   }, 
 {
   sequelize,
+  timestamps: true,
   freezeTableName: true,
   underscored: true,
   modelName: 'service_range'
