@@ -7,19 +7,9 @@ router.get('/api/jobs', async (req, res) => {
           include: [
             {
               model: User,
-              as: 'service_provider',
-              attributes: [
-                'first_name',
-                'last_name'
-              ],
             },
             {
               model: User,
-              as: 'customer',
-              attributes: [
-                'first_name',
-                'last_name'
-              ],
             },
           ],
         });
@@ -35,19 +25,9 @@ router.get('/api/jobs/:id', async (req, res) => {
         include: [
           {
             model: User,
-            as: 'service_provider',
-            attributes: [
-              'first_name',
-              'last_name'
-            ],
           },
           {
             model: User,
-            as: 'customer',
-            attributes: [
-              'first_name',
-              'last_name'
-            ],
           },
         ],
       });
@@ -84,19 +64,9 @@ router.put('/api/jobs/:id', async (req, res) => {
         include: [
           {
             model: User,
-            as: 'service_provider',
-            attributes: [
-              'first_name',
-              'last_name'
-            ],
           },
           {
             model: User,
-            as: 'customer',
-            attributes: [
-              'first_name',
-              'last_name'
-            ],
           },
         ],
       });
