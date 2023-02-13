@@ -30,7 +30,7 @@ Job.init(
       type: DataTypes.STRING,
     },
     invoice_amount: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10,4),
       allowNull: false,
       
     },
@@ -55,7 +55,7 @@ Job.init(
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'Job',
