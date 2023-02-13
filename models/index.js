@@ -95,4 +95,4 @@ Location.hasMany(Job,{
   ForeignKey: 'location_id',
 });
 
-module.exports = { Job, JobLocation, JobOffer, Location, Profile, ServiceRange, User};
+module.exports = { Job, JobLocation, JobOffer, Location, Profile, ServiceRange, Service,  User, JobStatusName};
