@@ -1,35 +1,42 @@
-router.get('/api/services', (req, res) => {
-    service.findAll().then(services => {
-        res.json
+router.get('/api/services', async (req, res) => {
+    try {
+        const services = await service.findAll();
+        res.json(services);
+    } catch (error) {
+        res.status(500).json({error});
     }
-    );
 }
 );
 
-router.get('/api/services/:id', (req, res) => {
-    service.findByPK(req.params.id).then(service => {
-        res.json(service);
+router.get('/api/services/:id', async (req, res) => {
+    try {
+        const serviceData = await service.findByPk(req.params.id);
+        res.json(serviceData);
+    } catch (error) {
+        res.status(500).json({error})
     }
-    );
 }
 );
 
-router.post('/api/services', (req, res) => {
-    service.create(
-        {
-            service_name: req.body.service_name,
-            description: req.body.description
-        }
-    )
-    .then(service => {
-        res.json(service);
+router.post('/api/services', async (req, res) => {
+    try {
+        const createdService = await service.create(
+            {
+                service_name: req.body.service_name,
+                description: req.body.description  
+            }
+        );
+        res.json(createdService);
     }
-    );
+    catch (error) {
+        res.status(500).json({error})
+    }
 }
 );
 
-router.put('/api/services/:id', (req, res) => {
-    service.update(
+router.put('/api/services/:id', async (req, res) => {
+    try {
+        await service.update(
         {
             service_name: req.body.service_name,
             description: req.body.description
@@ -39,33 +46,31 @@ router.put('/api/services/:id', (req, res) => {
                 id: req.params.id
             }
         }
-    )
-    .then(
-        () => {
-            service.findByPK(req.params.id).then(service => {
-                res.json(service);
-            }
-            );
-        }
     );
+    const updatedService = await service.findByPk(req.params.id);
+        res.json(updatedService);
+    } catch (error) {
+        res.status(500).json({ error });
+    }
 }
 );
 
-router.delete('/api/services/:id', (req, res) => {
-    service.destroy(
+router.delete('/api/services/:id', async (req, res) => {
+try {
+    await service.destroy(
         {
-            where: {
+            where:{
                 id: req.params.id
             }
         }
-    )
-    .then(() => {
-        res.json(
-            {
-                sucess: true
-            }
-            );
-    }
     );
+    res.json(
+        {
+            sucess: true
+        }
+    );
+    } catch(error) {
+        res.status(500).json({error});
+    }
 }
 );
