@@ -21,6 +21,8 @@ ServiceRange.init(
   }, 
 {
   sequelize,
+  freezeTableName: true,
+  underscored: true,
   modelName: 'service_range'
 }
 );

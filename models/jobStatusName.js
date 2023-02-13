@@ -17,8 +17,10 @@ JobStatusName.init(
         },
     }, 
 {
-  sequelize,
-  modelName: 'job_status_name'
+    sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'job_status_name',
 },
 );
 
