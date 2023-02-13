@@ -83,3 +83,17 @@ router.put('/jobOfferId', async (req, res) => {
     }
 });
 
+router.delete('/jobOfferId', async (req, res) => {
+    try {
+        const jobOfferData = await JobOffer.destroy(
+            {
+                where: {
+                    id: jobOfferId
+                }
+            }
+        );
+        res.status(200).json(jobOfferData.get({ plan: true }));
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
