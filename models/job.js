@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Blog extends Model {}
+class Job extends Model {}
 
-Blog.init(
+Job.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,24 +11,46 @@ Blog.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
-      type: DataTypes.STRING,
+    service_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      primaryKey: true,
+    },
+    service_provider_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+    },
+    customer_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
     },
     description: {
       type: DataTypes.STRING,
     },
-    date_created: {
-      type: DataTypes.DATE,
+    invoice_amount: {
+      type: DataTypes.DECIMAL,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
+      primaryKey: true,
     },
-    user_id: {
+    reject_accept: {
       type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id',
-      },
+      allowNull: false,
+      primaryKey: true,
+    },
+     estimated_completion_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+
+    },
+    start_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    completion_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
   },
   {
@@ -36,8 +58,9 @@ Blog.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'blog',
+    modelName: 'Job',
   }
 );
 
-module.exports = Blog;
+module.exports = Job;
+  
