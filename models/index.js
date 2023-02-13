@@ -20,14 +20,13 @@ JobOffer.hasOne(User, {
 });
 
 User.hasMany(Job, {
-  foreignKey: 'service_customer_id',
+  foreignKey: 'customer_id',
   foreignKey: 'service_provider_id',
-  onDelete: 'CASCADE',
 });
 
 Job.hasOne(User, {
-foreignKey: 'service_id',
-onDelete: 'CASCADE',
+  foreignKey: 'customer_id',
+  foreignKey: 'service_provider_id',
 });
 
 User.hasOne(ServiceRange, {
@@ -61,45 +60,39 @@ Profile.hasOne(Location,{
 });
 
 JobOffer.hasOne(Service, {
-  foreignKey:'user_id',
   foreignKey:'service_id',
-  onDelete: 'CASCADE',
 });
 
 Service.hasMany(JobOffer,{
   foreignKey:'service_id',
-  onDelete: 'CASCADE',
 });
 
 Job.hasOne(Service,{
   foreignKey: 'service_id',
-  onDelete: 'CASCADE',
+  
 });
 
 Service.hasMany(Job,{
   foreignKey: 'service_id',
-  onDelete: 'CASCADE',
+ 
 });
 
-Job.hasOne(Job_status,{
+Job.hasOne(JobStatusName,{
   foreignKey: 'job_id',
-  onDelete: 'CASCADE',
 });
 
-JobStatusName.hasOne(Job_status,{
+JobStatusName.hasOne(JobStatusName,{
   foreignKey: 'status_id',
-  onDelete: 'CASCADE',
+  
 });
 // update location model
-Job.hasOne(location,{
-  foreignKey: '',
-  onDelete: 'CASCADE',
+Job.hasOne(Location,{
+  foreignKey: 'location_id',
 });
 
 //update location model
-Location.hasMany(job,{
-  ForeignKey: '',
-  onDelete: 'CASCADE',
+Location.hasMany(Job,{
+  ForeignKey: 'location_id',
 });
 
 module.exports = { Job, JobLocation, JobOffer, Location, Profile, ServiceRange, User};
