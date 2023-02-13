@@ -1,6 +1,9 @@
+const router = require('express').Router();
+const {Service} = require('../../models');
+
 router.get('/api/services', async (req, res) => {
     try {
-        const services = await service.findAll();
+        const services = await Service.findAll();
         res.json(services);
     } catch (error) {
         res.status(500).json({error});
@@ -10,7 +13,7 @@ router.get('/api/services', async (req, res) => {
 
 router.get('/api/services/:id', async (req, res) => {
     try {
-        const serviceData = await service.findByPk(req.params.id);
+        const serviceData = await Service.findByPk(req.params.id);
         res.json(serviceData);
     } catch (error) {
         res.status(500).json({error})
@@ -20,7 +23,7 @@ router.get('/api/services/:id', async (req, res) => {
 
 router.post('/api/services', async (req, res) => {
     try {
-        const createdService = await service.create(
+        const createdService = await Service.create(
             {
                 service_name: req.body.service_name,
                 description: req.body.description  
@@ -36,7 +39,7 @@ router.post('/api/services', async (req, res) => {
 
 router.put('/api/services/:id', async (req, res) => {
     try {
-        await service.update(
+        await Service.update(
         {
             service_name: req.body.service_name,
             description: req.body.description
@@ -57,7 +60,7 @@ router.put('/api/services/:id', async (req, res) => {
 
 router.delete('/api/services/:id', async (req, res) => {
 try {
-    await service.destroy(
+    await Service.destroy(
         {
             where:{
                 id: req.params.id
