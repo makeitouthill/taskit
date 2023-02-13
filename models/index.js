@@ -20,7 +20,8 @@ JobOffer.hasOne(User, {
 });
 
 User.hasMany(Job, {
-  foreignKey: 'service_id',
+  foreignKey: 'service_customer_id',
+  foreignKey: 'service_provider_id',
   onDelete: 'CASCADE',
 });
 
