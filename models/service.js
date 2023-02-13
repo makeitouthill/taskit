@@ -25,7 +25,11 @@ Service.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
+<<<<<<< HEAD
     modelName: 'Service',
+=======
+    modelName: 'service',
+>>>>>>> 2c392d08d1553488b9f63c3b768ea4b4c0c5d870
   }
 );
 

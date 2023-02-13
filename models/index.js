@@ -1,34 +1,34 @@
-const job  = require('./job');
-const service   = require('./jobLocation');
-const user = require('./jobOffer');
-const job = require('./location');
-const profile = require('./profile');
-const service = require('./service');
-const serviceRange = require('./serviceRange');
-const user= require('./user');
+const Job  = require('./job');
+const Service   = require('./jobLocation');
+const User = require('./jobOffer');
+const Location = require('./location');
+const Profile = require('./profile');
+const Service = require('./service');
+const ServiceRange = require('./serviceRange');
+const User= require('./user');
 
 
-User.hasMany(jobOffer, {
+User.hasMany(JobOffer, {
   foreignKey:'user_id',
   onDelete: 'CASCADE',
 });
 
-JobOffer.hasOne(user, {
+JobOffer.hasOne(User, {
   foreignKey:'user_id',
   onDelete: 'CASCADE',
 });
 
-User.hasMany(job, {
+User.hasMany(Job, {
   foreignKey: 'service_id',
   onDelete: 'CASCADE',
 });
 
-Job.hasOne(user, {
+Job.hasOne(User, {
 foreignKey: 'service_id',
 onDelete: 'CASCADE',
 });
 
-User.hasOne(serviceRange, {
+User.hasOne(ServiceRange, {
   foreignKey: 'service_provider_id',
   onDelete: 'CASCADE',
 });
@@ -38,22 +38,22 @@ ServiceRange.hasOne(User,{
   onDelete: 'CASCADE',
 });
 
-Profile.hasOne(user,{
+Profile.hasOne(User,{
   foreignKey:'user_id',
   onDelete: 'CASCADE',
 });
 
-User.hasMany(profile, {
+User.hasMany(Profile, {
   foreignKey:'user_id',
   onDelete: 'CASCADE',
 });
 
-location.hasOne(profile,{
+Location.hasOne(Profile,{
   foreignKey: 'location_id',
   onDelete: 'CASCADE',
 });
 
-Profile.hasOne(location,{
+Profile.hasOne(Pocation,{
   foreignKey: 'location_id',
   onDelete: 'CASCADE',
 });
@@ -64,37 +64,37 @@ JobOffer.hasOne(Service, {
   onDelete: 'CASCADE',
 });
 
-Service.hasMany(jobOffer,{
+Service.hasMany(JobOffer,{
   foreignKey:'service_id',
   onDelete: 'CASCADE',
 });
 
-Job.hasOne(service,{
+Job.hasOne(Service,{
   foreignKey: 'service_id',
   onDelete: 'CASCADE',
 });
 
-Service.hasMany(job,{
+Service.hasMany(Job,{
   foreignKey: 'service_id',
   onDelete: 'CASCADE',
 });
 
-Job.hasOne(job_status,{
+Job.hasOne(Job_status,{
   foreignKey: 'job_id',
   onDelete: 'CASCADE',
 });
 
-Job_status.hasMany(job,{
+Job_status.hasMany(Job,{
   foreignKey: 'job_id',
   onDelete: 'CASCADE',
 });
 
-Job_status.hasMany(job_status_name,{
+Job_status.hasMany(Job_status_name,{
   foreignKey: 'status_id',
   onDelete: 'CASCADE',
 });
 
-Job_status_name.hasOne(job_status,{
+Job_status_name.hasOne(Job_status,{
   foreignKey: 'status_id',
   onDelete: 'CASCADE',
 });
