@@ -101,13 +101,13 @@ Job_status_name.hasOne(job_status,{
 // update location model
 Job.hasOne(location,{
   foreignKey: '',
-  onDelete: '',
+  onDelete: 'CASCADE',
 });
 
 //update location model
 Location.hasMany(job,{
   ForeignKey: '',
-  onDelete: '',
-})
+  onDelete: 'CASCADE',
+});
 
 module.exports = { job, jobLocation, jobOffer, location, profile, serviceRange, user};
