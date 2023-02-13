@@ -14,17 +14,17 @@ Job.init(
     service_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+
     },
     service_provider_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+
     },
     customer_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+,
     },
     description: {
       type: DataTypes.STRING,
@@ -32,12 +32,12 @@ Job.init(
     invoice_amount: {
       type: DataTypes.DECIMAL,
       allowNull: false,
-      primaryKey: true,
+      
     },
     reject_accept: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+    
     },
      estimated_completion_date: {
       type: DataTypes.DATE,
