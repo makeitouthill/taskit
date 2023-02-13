@@ -46,3 +46,19 @@ router.get('/:userId', async (req, res) => {
     }
 });
 
+router.post('/userId', async (req, res) => {
+    try {
+        const jobOfferData = await JobOffer.create(
+            {
+                user_id: req.params.userId,
+                service_id: req.body.service_id,
+                description: req.body.description,
+                offer_price: req.body.offer_price
+            }
+        );
+        res.status(200).json(jobOfferData);
+        
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
