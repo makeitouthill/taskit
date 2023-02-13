@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-
 class Job extends Model {}
+
 
 Job.init(
   {
@@ -14,35 +14,33 @@ Job.init(
     service_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
     },
     service_provider_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
     },
     customer_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true, 
+    },
+    service_provider_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    customer_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     description: {
       type: DataTypes.STRING,
     },
     invoice_amount: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10,4),
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
     },
     reject_accept: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
     },
      estimated_completion_date: {
       type: DataTypes.DATE,
@@ -57,14 +55,29 @@ Job.init(
       type: DataTypes.DATE,
       allowNull: false,
     },
+     estimated_completion_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+
+    },
+    start_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    completion_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Job',
+    modelName: 'job',
   }
 );
 
 module.exports = Job;
+  
+

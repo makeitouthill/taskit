@@ -12,11 +12,11 @@ dotenv.config();
 
 const app = express();
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 // Initialize Sequelize
-const sequelize = new Sequelize(taskit_db);
+const sequelize = require('./config/connection');
 
 // Set up Express session
 const SequelizeStore = sequelizeSession(session.Store);
@@ -28,6 +28,8 @@ app.use(session({
   store: sessionStore
 }));
 
-app.listen(process.env.PORT, () => {
-    console.log(`listening on port ${process.env.PORT}`);
+const port = process.env.PORT || 3001;
+
+app.listen(port, () => {
+    console.log(`listening on port ${port}`);
 });
