@@ -53,3 +53,16 @@ router.put('/:providerId', async (req, res) => {
     }
 });
 
+router.delete('/:providerId', async (req, res) => {
+    try {
+        const serviceRangeData = await ServiceRange.destroy(
+            {
+                where: {
+                    service_provider_id: provierId
+                }
+            }
+        );
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
