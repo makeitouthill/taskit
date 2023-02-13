@@ -1,11 +1,12 @@
 const Job  = require('./job');
 const Service   = require('./jobLocation');
-const User = require('./jobOffer');
+const JobOffer = require('./jobOffer');
 const Location = require('./location');
 const Profile = require('./profile');
 const Service = require('./service');
 const ServiceRange = require('./serviceRange');
-const User= require('./user');
+const JobStatusName= require('./jobStatusName');
+const User = require('./user')
 
 
 User.hasMany(JobOffer, {
@@ -84,17 +85,7 @@ Job.hasOne(Job_status,{
   onDelete: 'CASCADE',
 });
 
-Job_status.hasMany(Job,{
-  foreignKey: 'job_id',
-  onDelete: 'CASCADE',
-});
-
-Job_status.hasMany(Job_status_name,{
-  foreignKey: 'status_id',
-  onDelete: 'CASCADE',
-});
-
-Job_status_name.hasOne(Job_status,{
+JobStatusName.hasOne(Job_status,{
   foreignKey: 'status_id',
   onDelete: 'CASCADE',
 });
@@ -110,4 +101,4 @@ Location.hasMany(job,{
   onDelete: 'CASCADE',
 });
 
-module.exports = { job, jobLocation, jobOffer, location, profile, serviceRange, user};
+module.exports = { Job, JobLocation, JobOffer, Location, Profile, ServiceRange, User};
