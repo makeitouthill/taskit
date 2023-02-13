@@ -97,3 +97,5 @@ router.delete('/jobOfferId', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+module.exports = router;
