@@ -53,7 +53,7 @@ Location.hasOne(Profile,{
   onDelete: 'CASCADE',
 });
 
-Profile.hasOne(Pocation,{
+Profile.hasOne(Location,{
   foreignKey: 'location_id',
   onDelete: 'CASCADE',
 });
