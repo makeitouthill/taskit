@@ -1,23 +1,113 @@
-const Reader = require('./Reader');
-const Book = require('./Book');
-const LibraryCard = require('./LibraryCard');
+const job  = require('./job');
+const service   = require('./jobLocation');
+const user = require('./jobOffer');
+const job = require('./location');
+const profile = require('./profile');
+const service = require('./service');
+const serviceRange = require('./serviceRange');
+const user= require('./user');
 
-Reader.hasOne(LibraryCard, {
-  foreignKey: 'reader_id',
+
+User.hasMany(jobOffer, {
+  foreignKey:'user_id',
   onDelete: 'CASCADE',
 });
 
-Reader.hasMany(Book, {
-  foreignKey: 'reader_id',
+JobOffer.hasOne(user, {
+  foreignKey:'user_id',
   onDelete: 'CASCADE',
 });
 
-Book.belongsTo(Reader, {
-  foreignKey: 'reader_id',
+User.hasMany(job, {
+  foreignKey: 'service_id',
+  onDelete: 'CASCADE',
 });
 
-LibraryCard.belongsTo(Reader, {
-  foreignKey: 'reader_id',
+Job.hasOne(user, {
+foreignKey: 'service_id',
+onDelete: 'CASCADE',
 });
 
-module.exports = { Reader, Book, LibraryCard };
+User.hasOne(serviceRange, {
+  foreignKey: 'service_provider_id',
+  onDelete: 'CASCADE',
+});
+
+ServiceRange.hasOne(User,{
+  foreignKey: 'service_provider_id',
+  onDelete: 'CASCADE',
+});
+
+Profile.hasOne(user,{
+  foreignKey:'user_id',
+  onDelete: 'CASCADE',
+});
+
+User.hasMany(profile, {
+  foreignKey:'user_id',
+  onDelete: 'CASCADE',
+});
+
+location.hasOne(profile,{
+  foreignKey: 'location_id',
+  onDelete: 'CASCADE',
+});
+
+Profile.hasOne(location,{
+  foreignKey: 'location_id',
+  onDelete: 'CASCADE',
+});
+
+JobOffer.hasOne(Service, {
+  foreignKey:'user_id',
+  foreignKey:'service_id',
+  onDelete: 'CASCADE',
+});
+
+Service.hasMany(jobOffer,{
+  foreignKey:'service_id',
+  onDelete: 'CASCADE',
+});
+
+Job.hasOne(service,{
+  foreignKey: 'service_id',
+  onDelete: 'CASCADE',
+});
+
+Service.hasMany(job,{
+  foreignKey: 'service_id',
+  onDelete: 'CASCADE',
+});
+
+Job.hasOne(job_status,{
+  foreignKey: 'job_id',
+  onDelete: 'CASCADE',
+});
+
+Job_status.hasMany(job,{
+  foreignKey: 'job_id',
+  onDelete: 'CASCADE',
+});
+
+Job_status.hasMany(job_status_name,{
+  foreignKey: 'status_id',
+  onDelete: 'CASCADE',
+});
+
+Job_status_name.hasOne(job_status,{
+  foreignKey: 'status_id',
+  onDelete: 'CASCADE',
+});
+// update location model
+Job.hasOne(location,{
+  foreignKey: '',
+  onDelete: '',
+});
+
+//update location model
+Location.hasMany(job,{
+  ForeignKey: '',
+  onDelete: '',
+})
+
+module.exports = { job, jobLocation, jobOffer, location, profile, serviceRange, user};
