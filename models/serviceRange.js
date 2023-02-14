@@ -1,4 +1,3 @@
-
 const { Model, DataTypes } = require ('sequelize');
 const sequelize = require('../config/connection');
 
@@ -23,6 +22,7 @@ ServiceRange.init(
   }, 
 {
   sequelize,
+  timestamps: true,
   freezeTableName: true,
   underscored: true,
   modelName: 'service_range'
