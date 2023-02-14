@@ -1,1 +1,14 @@
-<h1>Hi There!</h1>
+{{nav}}
+<div class="container">
+        <div class="service-container">
+        <!-- Display service buttons here -->
+            {{> services-partial}}
+        </div>
+        <div class="job-offerings-container">
+            <!-- Display job offerings here -->
+            {{> jobOfferings jobOfferings=jobs}}
+        </div>
+</div>
+
+
+
