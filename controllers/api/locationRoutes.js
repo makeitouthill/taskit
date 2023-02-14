@@ -59,6 +59,36 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:id', async (res, req) => {
+    try {
+        const locationData = await Location.update({
+            id: req.params.id,
+            user_id: req.body.user_id,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            lat: req.body.lat,
+            long: req.body.long
 
+        });
+        res.status(200).json(locationData);
+    } catch (err) {
+        res.status(500).jsson(err);
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const locationData = Location.delete({
+            where: {
+                id: req.params.id
+            }
+        });
+        res.status(200).json(locationData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;
