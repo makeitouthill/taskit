@@ -23,11 +23,7 @@ Job.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    service_provider_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    customer_id: {
+    location_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -40,19 +36,6 @@ Job.init(
     },
     reject_accept: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-     estimated_completion_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-     
-    },
-    start_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    completion_date: {
-      type: DataTypes.DATE,
       allowNull: false,
     },
      estimated_completion_date: {
