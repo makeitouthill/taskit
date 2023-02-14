@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth');
 const { Job, User } = require('../../models');
 
-router.get('/api/jobs', async (req, res) => {
+router.get('/api/jobs', withAuth, async (req, res) => {
     try {
         const jobs = await Job.findAll({
           include: [
@@ -19,7 +20,7 @@ router.get('/api/jobs', async (req, res) => {
     }
 });
 
-router.get('/api/jobs/:id', async (req, res) => {
+router.get('/api/jobs/:id', withAuth, async (req, res) => {
     try {
       const job = await Job.findByPk(req.params.id, {
         include: [
@@ -40,7 +41,7 @@ router.get('/api/jobs/:id', async (req, res) => {
     }
 });
 
-router.post('/api/jobs', async (req, res) => {
+router.post('/api/jobs', withAuth, async (req, res) => {
     try {
       const job = await Job.create(
         {
@@ -58,17 +59,14 @@ router.post('/api/jobs', async (req, res) => {
     }
 });
 
-router.put('/api/jobs/:id', async (req, res) => {
+router.put('/api/jobs/:id', withAuth, async (req, res) => {
     try {
       const job = await Job.findByPk(req.params.id, {
         include: [
           {
             model: User,
-          },
-          {
-            model: User,
-          },
-        ],
+          }
+        ]
       });
       if (!job) {
         res.status(404).json({ message: 'Job not found' });
@@ -89,7 +87,7 @@ router.put('/api/jobs/:id', async (req, res) => {
     }
 });
 
-router.delete('/api/jobs/:id', async (req, res) => {
+router.delete('/api/jobs/:id', withAuth, async (req, res) => {
     try {
       const job = await Job.findByPk(req.params.id);
       if (!job) {

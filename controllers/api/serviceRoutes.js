@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth');
 const { Service } = require('../../models');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const services = await Service.findAll();
         res.json(services);
@@ -11,7 +12,7 @@ router.get('/', async (req, res) => {
 }
 );
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const serviceData = await Service.findByPk(req.params.id);
         res.json(serviceData);
@@ -21,7 +22,7 @@ router.get('/:id', async (req, res) => {
 }
 );
 
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const createdService = await Service.create(
             {
@@ -37,7 +38,7 @@ router.post('/', async (req, res) => {
 }
 );
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
         const serviceData = await Service.update(
             {
@@ -56,7 +57,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/api/services/:id', async (req, res) => {
+router.delete('/api/services/:id', withAuth, async (req, res) => {
     try {
         await Service.destroy(
             {

@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth');
 const { Profile } = require('../../models/profile');
 
-router.get('/api/profiles/:id', async (req, res) => {
+router.get('/api/profiles/:id', withAuth, async (req, res) => {
     try {
         const profile = await Profile.findByPk(req.params.id);
         res.json(profile);
@@ -10,7 +11,7 @@ router.get('/api/profiles/:id', async (req, res) => {
     }
 });
 
-router.post('/api/profiles', async (req, res) => {
+router.post('/api/profiles', withAuth, async (req, res) => {
     try {
         const profile = await Profile.create({
             user_id: req.body.user_id,
@@ -24,7 +25,7 @@ router.post('/api/profiles', async (req, res) => {
     }
 });
 
-router.put('/api/profiles/:id', async (req, res) => {
+router.put('/api/profiles/:id', withAuth, async (req, res) => {
     try {
         await Profile.update({
             user_id: req.body.user_id,
@@ -42,7 +43,7 @@ router.put('/api/profiles/:id', async (req, res) => {
     }
 });
 
-router.delete('/api/profiles/:id', async (req, res) => {
+router.delete('/api/profiles/:id', withAuth, async (req, res) => {
     try {
         await Profile.destroy({
         where: { id: req.params.id }
