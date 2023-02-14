@@ -16,6 +16,6 @@ router.use('/service-range', serviceRangeRoutes);
 router.use('/locations', locationRoutes);
 router.use('/profiles', profileRoutes);
 router.use('/job', jobRoutes);
-router.use('./logout', logoutRoute);
+router.use('/logout', logoutRoute);
 
 module.exports = router;

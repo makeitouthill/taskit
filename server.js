@@ -16,10 +16,9 @@ const hdbrs = exphbs.create({ helpers });
 
 const currentSession = {
     secret: process.env.SESSION_SECRET,
-    cookie: {},
     resave: false,
     saveUninitialized: false,
-    SameSite: "Strict",
+    SameSite: 'none',
     store: new SequelizeStore({
         db: sequelize
     })
