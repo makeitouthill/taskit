@@ -8,8 +8,7 @@ router.get('/', withAuth, async (req, res) => {
     const userData = await User.findAll();
     const users = userData.map((user) => user.get({ plain: true }));
     res.render('homepage', {
-      users,
-    //   loggedIn: req.session.loggedIn
+      users
     });
   } catch (err) {
     res.status(500).json(err);
@@ -68,6 +67,36 @@ router.get('/signup', (req, res) => {
       return;
     }
     res.render('signup');
+});
+
+// Account signup post
+router.post('/signup', async (req, res) => {
+  try {
+    const userData = await User.create({
+      email: req.body.email,
+      password: req.body.password,
+      view_preference: 'customer'
+    });
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Invalid email or password, please try again' });
+      return;
+    }
+  
+      // Create session variables for the newly create user
+      req.session.save(() => {
+      req.session.userId = userData.id;
+      req.session.loggedIn = true;
+      req.session.viewPreference = 'customer'
+      
+      res.redirect('/');
+    });
+
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 module.exports = router;
