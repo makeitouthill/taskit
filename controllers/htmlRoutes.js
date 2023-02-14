@@ -19,25 +19,25 @@ router.get('/', withAuth, async (req, res) => {
 
 // Login page
 router.get('/login', (req, res) => {
-    // if (req.session.loggedIn) {
-    //   res.redirect('/');
-    //   return;
-    // }
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
     res.render('login');
   });
 
 // Sign up
 router.get('/signup', (req, res) => {
-    // if (req.session.loggedIn) {
-    //   res.redirect('/');
-    //   return;
-    // }
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
     res.render('signup');
 });
 
 // Login post
 router.post('/login', async (req, res) => {
-    // try {
+    try {
       const userData = await User.findOne({ where: { email: req.body.email } });
   
       if (!userData) {
@@ -65,9 +65,9 @@ router.post('/login', async (req, res) => {
         res.json({ user: userData, message: 'You are now logged in!' });
       });
   
-    // } catch (err) {
-    //   res.status(400).json(err);
-    // }
+    } catch (err) {
+      res.status(400).json(err);
+    }
   });
   
 
