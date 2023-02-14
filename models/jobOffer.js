@@ -15,7 +15,7 @@ JobOffer.init(
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        service_provider_id: {
+        service_id: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
