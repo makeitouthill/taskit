@@ -11,7 +11,7 @@ JobStatusName.init(
             primaryKey: true,
             autoIncrement: true
         },
-        state_name: {
+        status_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
