@@ -28,6 +28,10 @@ Job.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    status_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false
@@ -64,5 +68,3 @@ Job.init(
 );
 
 module.exports = Job;
-  
-
