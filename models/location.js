@@ -31,11 +31,11 @@ Location.init(
             allowNull: false
         },
         lat: {
-            type: DataTypes.DECIMIAL,
+            type: DataTypes.DECIMAL,
             allowNull: false
         },
         long: {
-            type: DataTypes.DECIMIAL,
+            type: DataTypes.DECIMAL,
             allowNull: false
         }
     },

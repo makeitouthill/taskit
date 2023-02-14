@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const userRoutes = require('./userRoutes');
-const servicesRoutes = require('./servicesRoutes');
+// const userRoutes = require('./userRoutes');
+const servicesRoutes = require('./serviceRoutes');
 const jobOfferRoutes = require('./jobOfferRoutes');
 const serviceRangeRoutes = require('./serviceRangeRoutes');
 const locationRoutes = require('./locationRoutes');
@@ -9,7 +9,7 @@ const jobRoutes = require('./jobRoutes');
 const lougoutRoute = require('./logout');
 
 
-router.use('/users', userRoutes);
+// router.use('/users', userRoutes);
 router.use('/services', servicesRoutes);
 router.use('/job-offers', jobOfferRoutes);
 router.use('/service-range', serviceRangeRoutes);

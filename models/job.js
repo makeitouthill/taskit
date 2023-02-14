@@ -40,8 +40,8 @@ Job.init(
       type: DataTypes.DECIMAL(10,4),
       allowNull: false,
     },
-    reject_accept: {
-      type: DataTypes.INTEGER,
+    accept: {
+      type: DataTypes.BOOLEAN,
       allowNull: true,
     },
      estimated_completion_date: {
