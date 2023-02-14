@@ -18,4 +18,6 @@ const jobStatusNameData = [
     }
 ];
 
-module.exports = jobStatusNameData;
+const seedJobStatusName = () => JobStatusName.bulkCreate(jobStatusNameData);
+
+module.exports = seedJobStatusName;
