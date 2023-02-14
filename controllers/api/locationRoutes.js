@@ -40,6 +40,25 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const locationData = await Location.create(
+            {
+                user_id: req.body.user_id,
+                address: req.body.address,
+                city: req.body.city,
+                state: req.body.state,
+                zip: req.body.zip,
+                lat: req.body.lat,
+                long: req.body.long
+            }
+        );
+        res.status(200).json(locationData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 
 module.exports = router;
