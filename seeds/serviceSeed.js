@@ -15,6 +15,6 @@ const serviceData = [
     }
 ];
 
-const seedService = () => Service.BulkCreate(serviceData);
+const seedService = () => Service.bulkCreate(serviceData);
 
 module.exports = seedService;

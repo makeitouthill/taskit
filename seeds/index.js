@@ -1,6 +1,11 @@
-const seedAccounts = require('./account-seeds');
-const seedBlogs = require('./blog-seeds');
-const seedComments = require('./comment-seeds');
+const seedUser = require('./userSeed');
+const seedJobStatusName = require('./jobStatusNameSeed');
+const seedService = require('./serviceSeed');
+const seedServiceRange = require('./serviceRange');
+const seedLocation = require('./locationSeed');
+const seedProfile = require('./profileSeed');
+const seedJobOffer = require('./jobOfferSeed');
+const seedJob = require('./jobSeed');
 
 const sequelize = require('../config/connection');
 
