@@ -31,7 +31,8 @@ app.use(routes);
 
 // Config Handlebars
 const hdbrs = exphbs.create({ helpers });
-app.engine('handlebars', hdbrs.engine({ defaultLayout: 'main' }));
+// hdbrs.engine({ defaultLayout: 'main' });
+app.engine('handlebars', hdbrs.engine);
 app.set('view engine', 'handlebars');
 
 // Set up Express session
@@ -47,11 +48,11 @@ app.use(session(
     }
 ));
 
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 // Sync DB and start server
 sequelize.sync({ force: false }).then( () => {
-    app.listen(port, () => {
+    app.listen(PORT, () => {
         console.log(`listening on http://localhost:${PORT}`);
     });
 });

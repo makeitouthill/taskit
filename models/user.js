@@ -36,8 +36,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                minLength: [8],
-                maxLength: [32], 
+                len: [8, 32]
             },
         },
         view_preference: {
