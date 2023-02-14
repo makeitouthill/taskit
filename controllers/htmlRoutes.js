@@ -71,7 +71,7 @@ router.get('/signup', (req, res) => {
 
 // Account signup post
 router.post('/signup', async (req, res) => {
-  // try {
+  try {
     const userData = await User.create({
       email: req.body.email,
       password: req.body.password,
@@ -94,9 +94,9 @@ router.post('/signup', async (req, res) => {
       res.redirect('/');
     });
 
-  // } catch (err) {
-    // res.status(400).json(err);
-  // }
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
 module.exports = router;
