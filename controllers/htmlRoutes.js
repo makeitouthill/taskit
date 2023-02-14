@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, JobOffer } = require('../models');
+const { User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Home page
@@ -24,15 +24,6 @@ router.get('/login', (req, res) => {
       return;
     }
     res.render('login');
-  });
-
-// Sign up
-router.get('/signup', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/');
-      return;
-    }
-    res.render('signup');
 });
 
 // Login post
@@ -68,7 +59,15 @@ router.post('/login', async (req, res) => {
     } catch (err) {
       res.status(400).json(err);
     }
-  });
-  
+});
 
-  module.exports = router;
+// Sign up
+router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+    res.render('signup');
+});
+
+module.exports = router;
