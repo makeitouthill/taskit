@@ -15,4 +15,6 @@ const serviceData = [
     }
 ];
 
-module.exports = serviceData;
+const seedService = () => Service.BulkCreate(serviceData);
+
+module.exports = seedService;

@@ -32,4 +32,6 @@ const profileData = [
     },
 ];
 
-module.exports = profileData;
+const seedProfile = () => Profile.bulkCreate(profileData);
+
+module.exports = seedProfile;
