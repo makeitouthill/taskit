@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth');
 const { User } = require('../../models');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const userData = await User.findAll();
         if (!userData) {
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.params.id);
 
@@ -33,7 +34,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const userData = await User.create(
             {
@@ -51,7 +52,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
         const userData = await User.update(
             {
@@ -73,7 +74,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
         const userData = await User.destroy(
             {
