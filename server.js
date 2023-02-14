@@ -21,15 +21,21 @@ const sequelize = require('./config/connection');
 // Set up Express session
 const SequelizeStore = sequelizeSession(session.Store);
 const sessionStore = new SequelizeStore({ db: sequelize });
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  store: sessionStore
-}));
+app.use(session(
+    {
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        SameSite: "Strict",
+        store: sessionStore
+    }
+));
 
 const port = process.env.PORT || 3001;
 
-app.listen(port, () => {
-    console.log(`listening on port ${port}`);
+// Sync DB and start server
+sequelize.sync({ force: false }).then( () => {
+    app.listen(port, () => {
+        console.log(`listening on http://localhost:${PORT}`);
+    });
 });
