@@ -14,3 +14,7 @@ const serviceRangeData = [
         range_miles: 5
     }
 ];
+
+const seedServiceRange = () => ServiceRange.bulkCreate(serviceRangeData);
+
+module.exports = seedServiceRange;
