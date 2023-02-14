@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+class Job extends Model {}
 
-class job extends Model {}
 
-job.init(
+Job.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -14,12 +14,10 @@ job.init(
     service_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-
     },
     service_provider_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-
     },
     customer_id: {
       type: DataTypes.INTEGER,
@@ -35,12 +33,10 @@ job.init(
     invoice_amount: {
       type: DataTypes.DECIMAL(10,4),
       allowNull: false,
-      
     },
     reject_accept: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    
     },
      estimated_completion_date: {
       type: DataTypes.DATE,
@@ -65,5 +61,6 @@ job.init(
   }
 );
 
-module.exports = job;
+module.exports = Job;
   
+
