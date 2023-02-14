@@ -1,7 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-class Job extends Model {}
 
+
+class Job extends Model {}
 
 Job.init(
   {
@@ -29,6 +30,7 @@ Job.init(
     },
     description: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     invoice_amount: {
       type: DataTypes.DECIMAL(10,4),
@@ -36,7 +38,7 @@ Job.init(
     },
     reject_accept: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
      estimated_completion_date: {
       type: DataTypes.DATE,
