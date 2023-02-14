@@ -47,7 +47,6 @@ Job.init(
      estimated_completion_date: {
       type: DataTypes.DATE,
       allowNull: true,
-
     },
     start_date: {
       type: DataTypes.DATE,

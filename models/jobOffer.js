@@ -24,7 +24,7 @@ JobOffer.init(
             allowNull: false
         },
         offer_price: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DECIMAL(10,4),
             allowNull: false
         }
     }, 
