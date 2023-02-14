@@ -3,12 +3,7 @@ const { User } = require('../../models');
 
 router.get('/', async (req, res) => {
     try {
-        const userData = User.findAll(
-            {
-                include: [{ model: User }]
-            }
-        );
-
+        const userData = await User.findAll();
         if (!userData) {
             res.status(404).json({ message: "No user data" });
             return;
@@ -24,22 +19,14 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const userData = User.findAll(
-            {
-                include: [{ model: User }]
-            },
-            {
-                where: { id: userId }
-            }
-        );
+        const userData = await User.findByPk(req.params.id);
 
         if (!userData) {
             res.status(404).json({ message: "No user found with that id" });
             return;
         }
 
-        const users = usersData.map((user) => { user.get({ plain: true })});
-        res.status(200).json(users);
+        res.status(200).json(userData.get({ plain: true }) );
 
     } catch (err) {
         res.status(500).json(err);
@@ -76,11 +63,11 @@ router.put('/:id', async (req, res) => {
             },
             {
                 where: {
-                    id: req.params.userId,
+                    id: req.params.id,
                 }
             }
         );
-        res.status(200).json(userData.get({ plan: true }));
+        res.status(200).json(userData);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -88,14 +75,14 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const userData = await user.destroy(
+        const userData = await User.destroy(
             {
                 where: {
                     id: req.params.id
                 }
             }
         );
-        res.status(200).json(userData.get({ plan: true }));
+        res.status(200).json(userData);
     } catch (err) {
         res.status(500).json(err);
     }
