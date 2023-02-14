@@ -8,10 +8,7 @@ router.get('/api/jobs', withAuth, async (req, res) => {
           include: [
             {
               model: User,
-            },
-            {
-              model: User,
-            },
+            }
           ],
         });
         req.json(jobs);
@@ -26,10 +23,7 @@ router.get('/api/jobs/:id', withAuth, async (req, res) => {
         include: [
           {
             model: User,
-          },
-          {
-            model: User,
-          },
+          }
         ],
       });
       if (!job) {
