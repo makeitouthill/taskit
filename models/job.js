@@ -24,7 +24,10 @@ job.init(
     customer_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-,
+    },
+    location_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     description: {
       type: DataTypes.STRING,
