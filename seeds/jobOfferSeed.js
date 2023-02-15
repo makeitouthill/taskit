@@ -18,6 +18,12 @@ const jobOfferData = [
     service_id: 2,
     description: 'Backyard touch ups and overhauls.  That is what we are here for.  Price per 1/4 acres or less.',
     offer_price: 350.00
+  },
+  {
+    user_id: 2,
+    service_id: 2,
+    description: 'Backyard touch ups. Price per 1/4 acres or less.',
+    offer_price: 350.00
   }
 ];
 

@@ -1,9 +1,7 @@
-{{#each jobOfferings}}
-  <div class="job-offering">
-    <h3>{{service_name}}</h3>
-    <p>{{job_description}}</p>
-    <p>Service Provider: {{service_provider_id}}</p>
+{{#each this}}
+  <div class="job-offer">
+    <p>{{description}}</p>
+    <p>Price: {{offer_price}}</p>
+    <p>Offered by: {{user.first_name}} {{user.last_name}}</p>
   </div>
 {{/each}}
-
-{{!-- To use partial{{> jobOfferings jobOfferings=jobs}} --}}
