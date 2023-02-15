@@ -1,7 +1,7 @@
 // Get the create job modal and its components
 const createJobModal = document.getElementById("createJobModal");
 const jobDescription = document.getElementById("job-description");
-const serviceSelect = document.getElementById("serviceSelect");
+const serviceSelect = document.getElementById("service-id");
 const serviceProviderSelect = document.getElementById("serviceProviderSelect");
 const jobOfferInput = document.getElementById("jobOfferInput");
 const createJobForm = document.getElementById("createJobForm");
@@ -15,11 +15,16 @@ createJobButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     const jobOfferId = button.dataset.jobOfferId;
     const jobOfferEl = document.querySelector(`[data-job-offer-id="${jobOfferId}"]`);
-    jobDescription.value = jobOfferEl.previousElementSibling; //.querySelector('.job-description').textContent;
+    jobDescription.value = jobOfferEl.parentElement.childNodes[0].textContent.trim();
     const serviceId = jobOfferEl.dataset.serviceId;
-    serviceSelect.value = serviceId;
-    const serviceProviderId = jobOfferEl.dataset.userId;
+    // serviceSelect.value = serviceId;
+    const serviceProviderId = button.dataset.providerId;
+    var opt = document.createElement('option');
+    opt.value = serviceProviderId;
+    opt.innerHTML = serviceProviderId;
+
     serviceProviderSelect.value = serviceProviderId;
+    serviceProviderSelect.appendChild(opt);
     jobOfferInput.value = jobOfferId;
     createJobModal.style.display = 'block';
   });

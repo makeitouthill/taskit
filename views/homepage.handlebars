@@ -1,4 +1,4 @@
-{{#each services}}
+{{#each services as |service|}}
   <div class="service-card">
     <h2>{{ service_name }}</h2>
     <p>{{ description }}</p>
@@ -9,7 +9,7 @@
           <li class="job-description">
             {{ description }}
             <span>{{ format_price offer_price }}</span>
-            <button type="button" class="create-job-btn" data-bs-toggle="modal" data-bs-target="#createJobModal" data-job-offer-id="{{ id }}">Create Job</button>
+            <button type="button" class="create-job-btn" data-bs-toggle="modal" data-bs-target="#createJobModal" data-provider-id="{{ service.id }}" data-job-offer-id="{{ id }}">Create Job</button>
           </li>
         {{/each}}
       </ul>
@@ -29,14 +29,11 @@
         <form id="createJobForm">
           <div class="mb-3">
             <label for="job-description" class="form-label">Job Description</label>
-            <textarea class="form-control" id="job-description" name="job_description" required></textarea>
+            <textarea class="form-control" id="job-description" name="job_description" readonly required></textarea>
           </div>
           <div class="mb-3">
             <label for="serviceId" class="form-label">Service</label>
-            <input type="hidden" id="serviceId" name="service_id">
-            <select class="form-select" id="serviceSelect" disabled>
-              <option></option>
-            </select>
+            <input id="service-id" name="service_id" readonly>
           </div>
           <div class="mb-3">
             <label for="serviceProviderId" class="form-label">Service Provider</label>
