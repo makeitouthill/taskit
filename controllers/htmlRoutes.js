@@ -1,15 +1,25 @@
 const router = require('express').Router();
-const { User, Profile, Location } = require('../models');
+const { User, Profile, Location, Service, JobOffer } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Home page
 router.get('/', withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll();
-    const users = userData.map((user) => user.get({ plain: true }));
-    res.render('homepage', {
-      users
+    const serviceData = await Service.findAll({
+      include: [
+        {
+          model: JobOffer,
+          include: [
+            {
+              model: User,
+              attributes: ['id', 'first_name', 'last_name', 'email']
+            }
+          ]
+        }
+      ]
     });
+    const services = serviceData.map(service => service.get({ plain: true }));
+    res.render('homepage', { services, layout: 'main' });
   } catch (err) {
     res.status(500).json(err);
   }

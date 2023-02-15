@@ -1,1 +1,5 @@
-<div>Hello</div>
+<p>{{service.service_name}}</p>>
+<p>{{service.description}}</p>>
+{{#each service.job_offers as |job_offer|}}
+{{> jobOfferings}}
+{{/each}}

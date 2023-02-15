@@ -1,13 +1,14 @@
 {{nav}}
 <div class="container">
-        <div class="service-container">
-        <!-- Display service buttons here -->
-            {{> services-partial}}
+    <div class="service-container">
+        {{#each services}}
+        <div class="service">
+            <h2>{{service_name}}</h2>
+            <p>{{description}}</p>
+            {{> jobOfferings job_offers}}
         </div>
-        <div class="job-offerings-container">
-            <!-- Display job offerings here -->
-            {{> jobOfferings jobOfferings=jobs}}
-        </div>
+        {{/each}}
+    </div>
 </div>
 
 
