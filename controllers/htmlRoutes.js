@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Profile, Location } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Home page
@@ -13,6 +13,16 @@ router.get('/', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+// Profile page
+router.get('/profile', withAuth, async (req, res) => {
+  const userData = await User.findByPk(req.params.userId,
+    {
+      include: [{ model: Profile }]
+    });
+    console.log(userData);
+    res.status(200).json(userData);
 });
 
 
