@@ -39,7 +39,6 @@ router.post('/api/jobs', withAuth, async (req, res) => {
     try {
       const job = await Job.create(
         {
-            job_title: req.body.job_title,
             job_description: req.body.job_description,
             job_status_name_id: req.body.job_status_name_id,
             service_id: req.body.service_id,

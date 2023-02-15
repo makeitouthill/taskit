@@ -1,15 +1,58 @@
-{{nav}}
-<div class="container">
-    <div class="service-container">
-        {{#each services}}
-        <div class="service">
-            <h2>{{service_name}}</h2>
-            <p>{{description}}</p>
-            {{> jobOfferings job_offers}}
-        </div>
+{{#each services}}
+  <div class="service-card">
+    <h2>{{ service_name }}</h2>
+    <p>{{ description }}</p>
+    {{#if job_offers}}
+      <h4>Job Offers:</h4>
+      <ul>
+        {{#each job_offers}}
+          <li class="job-description">
+            {{ description }}
+            <span>{{ format_price offer_price }}</span>
+            <button type="button" class="create-job-btn" data-bs-toggle="modal" data-bs-target="#createJobModal" data-job-offer-id="{{ id }}">Create Job</button>
+          </li>
         {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+{{/each}}
+
+<!-- Modal for creating a new job -->
+<div class="modal" id="createJobModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Job</h5>
+        <button type="button" class="btn-close close-modal" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="createJobForm">
+          <div class="mb-3">
+            <label for="job-description" class="form-label">Job Description</label>
+            <textarea class="form-control" id="job-description" name="job_description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="serviceId" class="form-label">Service</label>
+            <input type="hidden" id="serviceId" name="service_id">
+            <select class="form-select" id="serviceSelect" disabled>
+              <option></option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="serviceProviderId" class="form-label">Service Provider</label>
+            <input type="hidden" id="serviceProviderId" name="service_provider_id">
+            <select class="form-select" id="serviceProviderSelect" disabled>
+              <option></option>
+            </select>
+          </div>
+          <input type="hidden" id="customerInput" name="customer_id" value="{{currentUser.id}}">
+          <input type="hidden" id="jobOfferInput" name="job_offer_id" value="">
+          <button type="submit" class="btn btn-primary">Create Job</button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 
 
-
+<script src="/js/homepage.js"></script>
