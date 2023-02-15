@@ -1,63 +1,66 @@
-// Add event listener to each job offer button
-const jobOfferButtons = document.querySelectorAll('.job-offer-button');
-jobOfferButtons.forEach((button) => {
-  button.addEventListener('click', (event) => {
-    const jobOfferId = event.target.getAttribute('data-job-offer-id');
+// Get the create job modal and its components
+const createJobModal = document.getElementById("createJobModal");
+const jobDescription = document.getElementById("job-description");
+const serviceSelect = document.getElementById("serviceSelect");
+const serviceProviderSelect = document.getElementById("serviceProviderSelect");
+const jobOfferInput = document.getElementById("jobOfferInput");
+const createJobForm = document.getElementById("createJobForm");
 
-    // Populate form data
-    const serviceId = document.querySelector('#service-id');
-    const serviceProviderId = document.querySelector('#service-provider-id');
-    const customerId = document.querySelector('#customer-id');
+// Get the create job button and close button
+const createJobButtons = document.querySelectorAll(".create-job-btn");
+const closeButtons = document.querySelectorAll(".close-modal");
 
-    const jobOffer = jobOffers.find((offer) => offer.id === parseInt(jobOfferId));
-    jobTitle.value = jobOffer.description;
-    serviceId.value = jobOffer.service_id;
-    serviceProviderId.value = jobOffer.user_id;
-
-    // Show modal
-    const modal = document.querySelector('.modal');
-    modal.classList.add('is-active');
+// Open the create job modal when the create job button is clicked
+createJobButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const jobOfferId = button.dataset.jobOfferId;
+    const jobOfferEl = document.querySelector(`[data-job-offer-id="${jobOfferId}"]`);
+    jobDescription.value = jobOfferEl.previousElementSibling; //.querySelector('.job-description').textContent;
+    const serviceId = jobOfferEl.dataset.serviceId;
+    serviceSelect.value = serviceId;
+    const serviceProviderId = jobOfferEl.dataset.userId;
+    serviceProviderSelect.value = serviceProviderId;
+    jobOfferInput.value = jobOfferId;
+    createJobModal.style.display = 'block';
   });
 });
 
-// Add event listener to close modal button
-const closeModalButton = document.querySelector('.close-modal');
-closeModalButton.addEventListener('click', () => {
-  const modal = document.querySelector('.modal');
-  modal.classList.remove('is-active');
+// Close the create job modal when the close button is clicked
+closeButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    createJobModal.style.display = 'none';
+  });
 });
 
-// Add event listener to create job form
-const createJobForm = document.querySelector('#create-job-form');
-createJobForm.addEventListener('submit', async (event) => {
+// Submit the create job form using fetch when the form is submitted
+createJobForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const jobTitle = document.querySelector('#job-title').value;
-  const serviceId = document.querySelector('#service-id').value;
-  const serviceProviderId = document.querySelector('#service-provider-id').value;
-  const customerId = document.querySelector('#customer-id').value;
-  const jobStatusNameId = 1; // Default to "Open" status
-
-  const response = await fetch('/api/jobs', {
-    method: 'POST',
-    body: JSON.stringify({
-      job_title: jobTitle,
-      job_description: jobTitle,
-      job_status_name_id: jobStatusNameId,
-      service_id: serviceId,
-      service_provider_id: serviceProviderId,
-      customer_id: customerId
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
+  const formData = new FormData(createJobForm);
+  const response = await fetch("/api/jobs", {
+    method: "POST",
+    body: formData,
   });
 
   if (response.ok) {
-    alert('Job created successfully!');
-    const modal = document.querySelector('.modal');
-    modal.classList.remove('is-active');
+    createJobModal.style.display = 'none';
+    alert("Job created successfully");
   } else {
-    alert('Failed to create job');
+    const error = await response.json();
+    alert(error.message);
   }
+});
+
+// Load the services and service providers when the page loads
+window.addEventListener("load", async (event) => {
+  // Load the services
+  const serviceSelectOptions = document.querySelectorAll('#serviceSelect option');
+  const services = Array.from(serviceSelectOptions).map(option => ({id: option.value, service_name: option.textContent}));
+
+  // Load the service providers
+  const serviceProviderSelectOptions = document.querySelectorAll('#serviceProviderSelect option');
+  const serviceProviders = Array.from(serviceProviderSelectOptions).map(option => {
+    const [firstName, lastName] = option.textContent.split(' ');
+    return {id: option.value, first_name: firstName, last_name: lastName};
+  });
 });

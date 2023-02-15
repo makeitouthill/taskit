@@ -6,9 +6,10 @@
       <h4>Job Offers:</h4>
       <ul>
         {{#each job_offers}}
-          <li>
-            {{ description }} offered by {{ user.first_name }} {{ user.last_name }}
-            <button type="button" data-job-offer-id="{{ id }}" class="create-job-btn">Create Job</button>
+          <li class="job-description">
+            {{ description }}
+            <span>{{ format_price offer_price }}</span>
+            <button type="button" class="create-job-btn" data-bs-toggle="modal" data-bs-target="#createJobModal" data-job-offer-id="{{ id }}">Create Job</button>
           </li>
         {{/each}}
       </ul>
@@ -17,30 +18,41 @@
 {{/each}}
 
 <!-- Modal for creating a new job -->
-<div class="modal" id="create-job-modal">
-  <div class="modal-content">
-    <form id="create-job-form">
-      <label for="job_title">Job Title:</label>
-      <input type="text" id="job_title" name="job_title" required>
-      <br>
-      <label for="job_description">Job Description:</label>
-      <input type="text" id="job_description" name="job_description" required>
-      <br>
-      <label for="job_status_name_id">Job Status:</label>
-      <input type="number" id="job_status_name_id" name="job_status_name_id" required>
-      <br>
-      <label for="service_id">Service ID:</label>
-      <input type="number" id="service_id" name="service_id" required>
-      <br>
-      <label for="service_provider_id">Service Provider ID:</label>
-      <input type="number" id="service_provider_id" name="service_provider_id" required>
-      <br>
-      <label for="customer_id">Customer ID:</label>
-      <input type="number" id="customer_id" name="customer_id" required>
-      <br>
-      <button type="submit">Create Job</button>
-    </form>
+<div class="modal" id="createJobModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Job</h5>
+        <button type="button" class="btn-close close-modal" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="createJobForm">
+          <div class="mb-3">
+            <label for="job-description" class="form-label">Job Description</label>
+            <textarea class="form-control" id="job-description" name="job_description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="serviceId" class="form-label">Service</label>
+            <input type="hidden" id="serviceId" name="service_id">
+            <select class="form-select" id="serviceSelect" disabled>
+              <option></option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="serviceProviderId" class="form-label">Service Provider</label>
+            <input type="hidden" id="serviceProviderId" name="service_provider_id">
+            <select class="form-select" id="serviceProviderSelect" disabled>
+              <option></option>
+            </select>
+          </div>
+          <input type="hidden" id="customerInput" name="customer_id" value="{{currentUser.id}}">
+          <input type="hidden" id="jobOfferInput" name="job_offer_id" value="">
+          <button type="submit" class="btn btn-primary">Create Job</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
+
 
 <script src="/js/homepage.js"></script>
