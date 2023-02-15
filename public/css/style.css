@@ -51,6 +51,16 @@
     top: 90px;
 }
   
+.signup-form {
+    width: 200px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    left: 10px;
+    top: 90px;
+}
+
 .form-input {
     width: 80%;
     height: 25px;
