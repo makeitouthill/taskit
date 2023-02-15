@@ -17,12 +17,20 @@ router.get('/', withAuth, async (req, res) => {
 
 // Profile page
 router.get('/profile', withAuth, async (req, res) => {
-  const userData = await User.findByPk(req.params.userId,
+  const userData = await User.findByPk(req.session.userId,
     {
-      include: [{ model: Profile }]
+      include: [{ model: Profile }, { model: Location }]
     });
-    console.log(userData);
-    res.status(200).json(userData);
+    
+    if(!userData.profiles) {
+      res.status(404).json({ message: "No user found" });
+      return;
+    }
+    const filteredProfile = await userData.profiles.filter((profile) => { return profile.view_type === req.session.viewPreference });
+    res.render('profile', { 
+        userData: userData.get({plain: true}), 
+        filteredProfile: filteredProfile[0].get({plain: true})
+    });
 });
 
 
