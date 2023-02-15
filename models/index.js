@@ -20,12 +20,20 @@ JobOffer.hasOne(User, {
 
 User.hasMany(Job, {
   foreignKey: 'customer_id',
-  foreignKey: 'service_provider_id'
+  as: 'customer_jobs'
 });
 
-Job.hasOne(User, {
-  foreignKey: 'customer_id',
-  foreignKey: 'service_provider_id'
+User.hasMany(Job, {
+  foreignKey: 'service_provider_id',
+  as: 'provider_jobs'
+});
+
+Job.belongsTo(User, {
+  as: 'customer'
+});
+
+Job.belongsTo(User, {
+  as: 'service_provider'
 });
 
 User.hasOne(ServiceRange, {

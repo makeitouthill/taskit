@@ -1,0 +1,18 @@
+<h2>User Profile</h2>
+<div>
+    <p>User ID: {{userData.id}}</p>
+    <p>First Name: {{userData.first_name}}</p>
+    <p>Last Name: {{userData.last_name}}</p>
+    <p>Email: {{userData.email}}</p>
+    <p>View Preference: {{userData.view_preference}}</p>
+    <p>Profile ID: {{filteredProfile.id}}</p>
+    <p>User ID: {{filteredProfile.user_id}}</p>
+    <p>Location ID: {{filteredProfile.location_id}}</p>
+    <p>View Type: {{filteredProfile.view_type}}</p>
+    <p>Bio: {{filteredProfile.bio}}</p>
+</div>
+{{#if (eq filteredProfile.view_type "provider") }}
+    <p>I'm a provider</p>
+{{else}}
+    <p>I'm a customer</p>
+{{/if }}
